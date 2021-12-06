@@ -1,6 +1,4 @@
-
 package com.c4.reto2.service;
-
 
 import com.c4.reto2.model.User;
 import com.c4.reto2.repository.UserRepository;
@@ -13,10 +11,10 @@ import org.springframework.stereotype.Service;
  *
  * @author Jhon Rob
  */
-
 @Service
 public class UserService {
-     @Autowired
+
+    @Autowired
     private UserRepository userRepository;
 
     public List<User> getAll() {
@@ -24,24 +22,24 @@ public class UserService {
     }
 
     public Optional<User> getUser(int id) {
-        
+
         return userRepository.getUser(id);
     }
 
     public User create(User user) {
         if (user.getId() == null) {
-            return user;            
-        }else {
+            return user;
+        } else {
             Optional<User> e = userRepository.getUser(user.getId());
             if (e.isEmpty()) {
-                if (emailExists(user.getEmail())==false){
+                if (emailExists(user.getEmail()) == false) {
                     return userRepository.create(user);
-                }else{
+                } else {
                     return user;
                 }
-            }else{
+            } else {
                 return user;
-            }           
+            }
         }
     }
 
@@ -71,7 +69,10 @@ public class UserService {
                 if (user.getZone() != null) {
                     userDb.get().setZone(user.getZone());
                 }
-                
+                if (user.getType() != null) {
+                    userDb.get().setType(user.getType());
+                }
+
                 userRepository.update(userDb.get());
                 return userDb.get();
             } else {
@@ -81,7 +82,7 @@ public class UserService {
             return user;
         }
     }
-    
+
     public boolean delete(int userId) {
         Boolean aBoolean = getUser(userId).map(user -> {
             userRepository.delete(user);
@@ -89,7 +90,7 @@ public class UserService {
         }).orElse(false);
         return aBoolean;
     }
-    
+
     public boolean emailExists(String email) {
         return userRepository.emailExists(email);
     }
@@ -103,5 +104,5 @@ public class UserService {
             return usuario.get();
         }
     }
-    
+
 }

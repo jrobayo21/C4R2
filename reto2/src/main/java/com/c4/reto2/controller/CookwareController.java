@@ -1,6 +1,5 @@
 package com.c4.reto2.controller;
 
-
 import com.c4.reto2.model.Cookware;
 import com.c4.reto2.service.CookwareService;
 import java.util.List;
@@ -20,20 +19,21 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  *
- * @author USUARIO
+ * @author Jhon Rob
  */
 @RestController
 @RequestMapping("/api/cookware")
 @CrossOrigin("*")
 public class CookwareController {
-       @Autowired
+
+    @Autowired
     private CookwareService accessoryService;
-       
-     @GetMapping("/all")
+
+    @GetMapping("/all")
     public List<Cookware> getAll() {
         return accessoryService.getAll();
     }
-    
+
     @GetMapping("/{reference}")
     public Optional<Cookware> getClothe(@PathVariable("reference") String reference) {
         return accessoryService.getClothe(reference);
@@ -44,7 +44,7 @@ public class CookwareController {
     public Cookware create(@RequestBody Cookware gadget) {
         return accessoryService.create(gadget);
     }
-    
+
     @PutMapping("/update")
     @ResponseStatus(HttpStatus.CREATED)
     public Cookware update(@RequestBody Cookware gadget) {
@@ -55,6 +55,6 @@ public class CookwareController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public boolean delete(@PathVariable("reference") String reference) {
         return accessoryService.delete(reference);
-    } 
-    
+    }
+
 }

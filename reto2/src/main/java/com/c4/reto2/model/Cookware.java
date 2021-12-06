@@ -1,4 +1,3 @@
-
 package com.c4.reto2.model;
 
 import lombok.AllArgsConstructor;
@@ -11,12 +10,12 @@ import org.springframework.data.mongodb.core.mapping.Document;
  *
  * @author Jhon Rob
  */
-
 @Document(collection = "supplements")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Cookware{
+public class Cookware {
+
     @Id
     private String reference;
     private String brand;

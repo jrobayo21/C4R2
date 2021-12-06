@@ -1,6 +1,5 @@
 package com.c4.reto2.repository;
 
-
 import com.c4.reto2.model.Cookware;
 import com.c4.reto2.repository.crud.InterfaceCookware;
 import java.util.List;
@@ -14,6 +13,7 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public class CookwareRepository {
+
     @Autowired
     private InterfaceCookware repository;
 
@@ -24,6 +24,7 @@ public class CookwareRepository {
     public Optional<Cookware> getClothe(String reference) {
         return repository.findById(reference);
     }
+
     public Cookware create(Cookware clothe) {
         return repository.save(clothe);
     }
@@ -31,7 +32,7 @@ public class CookwareRepository {
     public void update(Cookware clothe) {
         repository.save(clothe);
     }
-    
+
     public void delete(Cookware clothe) {
         repository.delete(clothe);
     }
